@@ -69,36 +69,40 @@ export function Summary() {
       <div className="flex flex-col gap-6">
         <h2 className="text-xl font-medium">Sua semana</h2>
 
-        {Object.entries(data.goalsPerDay).map(([data, goals]) => {
-          const weekday = dayjs(data).format('dddd')
-          const formattedDate = dayjs(data).format('D[ de ]MMMM')
+        {data.goalsPerDay
+          ? Object.entries(data.goalsPerDay).map(([data, goals]) => {
+              const weekday = dayjs(data).format('dddd')
+              const formattedDate = dayjs(data).format('D[ de ]MMMM')
 
-          return (
-            <div key={data} className="flex flex-col gap-4">
-              <h3 className="font-medium ">
-                <span className="capitalize">{weekday}</span>{' '}
-                <span className="text-zinc-400 text-xs">({formattedDate})</span>
-              </h3>
+              return (
+                <div key={data} className="flex flex-col gap-4">
+                  <h3 className="font-medium ">
+                    <span className="capitalize">{weekday}</span>{' '}
+                    <span className="text-zinc-400 text-xs">
+                      ({formattedDate})
+                    </span>
+                  </h3>
 
-              <ul className="flex flex-col gap-3">
-                {goals.map(goal => {
-                  const time = dayjs(goal.completedAt).format('HH:mm[h]')
+                  <ul className="flex flex-col gap-3">
+                    {goals.map(goal => {
+                      const time = dayjs(goal.completedAt).format('HH:mm[h]')
 
-                  return (
-                    <li key={goal.id} className="flex items-center gap-2">
-                      <CheckCircle2 className="size-4 text-pink-500" />
-                      <span className="text-sm text-zinc-400">
-                        Você completou "
-                        <span className="text-zinc-100">{goal.title}</span> às{' '}
-                        <span className="text-zinc-100">{time}</span>
-                      </span>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
-          )
-        })}
+                      return (
+                        <li key={goal.id} className="flex items-center gap-2">
+                          <CheckCircle2 className="size-4 text-pink-500" />
+                          <span className="text-sm text-zinc-400">
+                            Você completou "
+                            <span className="text-zinc-100">{goal.title}</span>"
+                            às <span className="text-zinc-100">{time}</span>
+                          </span>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                </div>
+              )
+            })
+          : null}
       </div>
     </div>
   )

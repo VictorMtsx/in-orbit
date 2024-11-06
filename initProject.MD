@@ -3,5 +3,6 @@ A cada novo terminal, rodar:
 
 1 - iniciar o docker 
 2 - iniciar o server
-3 - npx drizzle-kit migrate 
-4 - iniciar npm run dev no fronta
+3 - npx drizzle-kit studio
+4 - npx drizzle-kit migrate 
+5 - iniciar npm run dev no fronts
